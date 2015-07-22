@@ -24,12 +24,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
+    if @post.save
+      flash.now.notice = 'Post has been created.'
+    end
+
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-      else
-        format.html { render :new }
-      end
       format.js
     end
   end
@@ -37,14 +36,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    if @post.update(post_params)
+      flash.now.notice = 'Post has been updated.'
+    end
+
     respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      format.js
     end
   end
 
@@ -53,8 +50,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
