@@ -46,3 +46,5 @@ end
 gem 'faye'
 gem 'thin', require: false
 gem 'sync'
+
+# gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'

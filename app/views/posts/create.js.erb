@@ -1,0 +1,5 @@
+<% if !@post.errors.any? %>
+	$('<%= params[:remote_target] %>').trigger('reset');
+<% else %>
+	$('<%= params[:remote_target] %>').replaceWith("<%= j render 'posts/form' %>");
+<% end %>
