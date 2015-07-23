@@ -26,8 +26,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash.now.notice = 'Post has been created.'
-    else
-      flash.now.alert = 'SDDSDS'
+      @post = Post.new
     end
 
     respond_to do |format|
@@ -50,7 +49,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    if @post.destroy
+      flash.now.notice = 'Post has been destroyed.'
+    end
+
     respond_to do |format|
       format.js
     end
