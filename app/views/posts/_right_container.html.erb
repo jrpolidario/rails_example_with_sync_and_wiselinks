@@ -1,0 +1,10 @@
+<h2>
+  <%=
+  case action_name
+  when 'show'
+  	sync partial: 'show', resource: post if post
+  when 'edit'
+    render 'form', post: post if post
+  end
+  %>
+</h2>

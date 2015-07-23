@@ -1,22 +1,27 @@
 class PostsController < ApplicationController
   enable_sync only: [:create, :update, :destroy]
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:index, :show, :edit, :update, :destroy, :right_container]
+
+  before_action :set_posts, only: [:index, :show, :edit]
+
+  # before_action :redirect_to_index_if_reloaded, only: [:edit]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    @post = Post.new
+    render :index
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    render :index
   end
 
   # GET /posts/1/edit
   def edit
+    render :index
   end
 
   # POST /posts
@@ -59,9 +64,18 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_posts
+    referrer = Rails.application.routes.recognize_path(request.referrer)
+    if referrer[:controller] != 'posts' or referrer[:action] != 'index'
+      # if new page / refreshed / back
+      @posts = Post.all
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by_id(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
