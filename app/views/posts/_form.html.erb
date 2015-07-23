@@ -1,5 +1,4 @@
 <%= form_for @post, remote: true, html: {id: 'post-form'} do |f| %>
-  <%= hidden_field_tag :remote_target, '#post-form' %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>

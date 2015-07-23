@@ -1,2 +1,1 @@
-$('#notice').text('<%= notice %>');
-$('#alert').text('<%= alert %>');
+$('#flash').replaceWith("<%= j render 'layouts/flash' %>")

@@ -26,6 +26,8 @@ class PostsController < ApplicationController
 
     if @post.save
       flash.now.notice = 'Post has been created.'
+    else
+      flash.now.alert = 'SDDSDS'
     end
 
     respond_to do |format|
