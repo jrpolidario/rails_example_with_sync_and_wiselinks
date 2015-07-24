@@ -16,12 +16,20 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    render :index
+    if @is_fresh_page
+      render :index
+    else
+      render partial: 'posts/show', locals: {post: @post}
+    end
   end
 
   # GET /posts/1/edit
   def edit
-    render :index
+    if @is_fresh_page
+      render :index
+    else
+      render partial: 'posts/edit', locals: {post: @post}
+    end
   end
 
   # POST /posts
@@ -66,7 +74,15 @@ class PostsController < ApplicationController
   private
 
   def set_posts
-    @posts = Post.all
+    referrer = Rails.application.routes.recognize_path(request.referrer)
+    puts 'REFERRRRRRRRRRRRRRRRRRRRRRRER'
+    puts request.referrer
+    puts referrer[:controller]
+    if referrer.blank? || (controller_name == 'posts' && action_name == 'index')
+      # if new page / refreshed
+      @posts = Post.all
+      @is_fresh_page = true
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
