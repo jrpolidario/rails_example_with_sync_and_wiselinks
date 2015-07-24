@@ -8,20 +8,6 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= javascript_include_tag Sync.adapter_javascript_url %>
-    <script>
-      $(function(){
-        window.wiselinks = new Wiselinks('<%= @target %>');
-        $(document).off('page:loading').on('page:loading', function(event, $target, render, url) {
-          console.log("Loading: " + url + " to " + $target.selector + " within " + render);
-          $(".se-pre-con").show();
-        });
-        $(document).off('page:done').on('page:done', function(event, $target, status, url, data) {
-          console.log("Wiselinks status: " + status);
-          // Animate loader off screen
-          $(".se-pre-con").fadeOut('slow');
-        })
-      });
-    </script>
     <%= csrf_meta_tags %>
   </head>
   <body>

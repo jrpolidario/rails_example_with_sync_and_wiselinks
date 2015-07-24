@@ -1,7 +1,7 @@
 <tr>
   <td><%= post.title %></td>
   <td><%= post.content %></td>
-  <td><%= link_to 'Show', post_path(post, target: '#right-container'), data: {push: 'partial', target: '#right-container'} %></td>
-  <td><%= link_to 'Edit', edit_post_path(post, target: '#right-container'), data: {push: 'partial', target: '#right-container'} %></td>
+  <td><%= link_to 'Show', posts_path(post_id: post.id, right_container_action: 'show'), data: {push: 'partial', target: '#right-container'} %></td>
+  <td><%= link_to 'Edit', posts_path(post_id: post.id, right_container_action: 'edit'), data: {push: 'partial', target: '#right-container'} %></td>
   <td><%= link_to 'Destroy', post, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
 </tr>

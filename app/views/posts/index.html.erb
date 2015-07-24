@@ -3,9 +3,9 @@
     <%= render 'posts/left_container', posts: @posts %>
   </div>
   <div class='medium-12 large-6 columns' id='right-container'>
-    <%= render 'posts/right_container', post: @post %>
+    <%= render 'posts/right_container', post: @post, action: @right_container_action %>
   </div>
 </div>
 <div class='row'>
-  <%= render 'posts/new', post: @post %>
+  <%= render 'posts/new', post: @new_post %>
 </div>

@@ -3,34 +3,43 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: [:index, :show, :edit, :update, :destroy, :right_container]
 
-  before_action :set_posts, only: [:index, :show, :edit]
+  # before_action :set_posts, only: [:index, :show, :edit]
 
   # before_action :redirect_to_index_if_reloaded, only: [:edit]
 
   # GET /posts
   # GET /posts.json
   def index
-    render :index
+    # render :index
+    @post = Post.find(params[:post_id]) if params[:post_id]
+    @right_container_action = params[:right_container_action] || params[:right_container_action]
+
+    if request.wiselinks_partial?
+      render partial: 'posts/right_container', locals: {post: @post, action: @right_container_action}
+    else
+      @posts = Post.all
+      @new_post = Post.new
+    end
   end
 
   # GET /posts/1
   # GET /posts/1.json
-  def show
-    if @is_fresh_page
-      render :index
-    else
-      render partial: 'posts/show', locals: {post: @post}
-    end
-  end
+  # def show
+  #   if request.wiselinks_partial?
+  #     render partial: 'posts/show', locals: {post: @post}
+  #   else
+  #     render :index
+  #   end
+  # end
 
   # GET /posts/1/edit
-  def edit
-    if @is_fresh_page
-      render :index
-    else
-      render partial: 'posts/edit', locals: {post: @post}
-    end
-  end
+  # def edit
+  #   if request.wiselinks_partial?
+  #     render partial: 'posts/edit', locals: {post: @post}
+  #   else
+  #     render :index
+  #   end
+  # end
 
   # POST /posts
   # POST /posts.json
@@ -73,17 +82,15 @@ class PostsController < ApplicationController
 
   private
 
-  def set_posts
-    referrer = Rails.application.routes.recognize_path(request.referrer)
-    puts 'REFERRRRRRRRRRRRRRRRRRRRRRRER'
-    puts request.referrer
-    puts referrer[:controller]
-    if referrer.blank? || (controller_name == 'posts' && action_name == 'index')
-      # if new page / refreshed
-      @posts = Post.all
-      @is_fresh_page = true
-    end
-  end
+  # def set_posts
+  #   referrer = Rails.application.routes.recognize_path(request.referrer)
+  #   # if referrer.blank? || (controller_name == 'posts' && action_name == 'index')
+  #   if !request.wiselinks_partial?
+  #     # if new page / refreshed
+  #     @posts = Post.all
+  #     @is_fresh_page = true
+  #   end
+  # end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post

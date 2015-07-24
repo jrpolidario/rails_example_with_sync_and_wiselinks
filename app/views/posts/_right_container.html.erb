@@ -1,8 +1,10 @@
 <%=
-case action_name
-when 'show'
-	sync partial: 'show', resource: post if post
-when 'edit'
-render 'posts/edit', post: post if post
+if post
+  case action
+  when 'show'
+    sync partial: 'show', resource: post
+  when 'edit'
+    sync partial: 'edit', resource: post
+  end
 end
 %>

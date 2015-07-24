@@ -19,9 +19,9 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(function(){window.wiselinks = new Wiselinks();});
 
 $(window).load(function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut('slow');
-  // History.replaceState(History.getState(), 'Done State', document.location.href + '#done');
 });
