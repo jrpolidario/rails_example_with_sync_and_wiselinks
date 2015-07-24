@@ -8,6 +8,14 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= javascript_include_tag Sync.adapter_javascript_url %>
+    <script>
+      $(function(){
+        window.wiselinks = new Wiselinks('<%= @target %>');
+        $(document).off('page:loading').on('page:loading', function(event, $target, render, url) {
+          console.log("Loading: " + url + " to " + $target.selector + " within " + render);
+        })
+      });
+    </script>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -18,4 +26,5 @@
       </div>
     </div>
   </body>
+  <div class="se-pre-con"></div>
 </html>

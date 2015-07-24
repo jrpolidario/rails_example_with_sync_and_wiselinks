@@ -18,10 +18,9 @@
 //= require wiselinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
-$(function(){ window.wiselinks = new Wiselinks(); });
-
-// Forced reload page if Back button is pressed. Because Wiselinks doesn't seem to work when Back is pressed.
-window.addEventListener('popstate', function(e) {
-    location.reload();
+$(window).load(function() {
+	// Animate loader off screen
+	$(".se-pre-con").fadeOut("slow");;
 });
+
+$(function(){ $(document).foundation(); });

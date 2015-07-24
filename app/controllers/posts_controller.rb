@@ -66,11 +66,7 @@ class PostsController < ApplicationController
   private
 
   def set_posts
-    referrer = Rails.application.routes.recognize_path(request.referrer)
-    if referrer[:controller] != 'posts' or referrer[:action] != 'index'
-      # if new page / refreshed / back
-      @posts = Post.all
-    end
+    @posts = Post.all
   end
 
   # Use callbacks to share common setup or constraints between actions.
