@@ -26,7 +26,9 @@ This is only an example application that hopefully would be useful to developers
 * On another terminal/window, run the the sync-faye server next.
 
   ```bash
-  rackup sync.ru
+  rackup sync.ru -E production
   ```
+
+  > Note the `-E production`, Faye server with Thin doesn't seem to work on development
 
 * Finally, open [http://localhost:3000/posts](http://localhost:3000/posts) to view the page
