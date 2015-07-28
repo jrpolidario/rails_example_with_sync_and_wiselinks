@@ -43,16 +43,12 @@ group :development, :test do
   gem 'spring'
 end
 
-# ADDED GEMS BY JULES
+# ADDED GEMS
 
 gem 'foundation-rails'
-
-gem 'kaminari'
 
 gem 'faye'
 gem 'thin', require: false
 gem 'sync'
 
 gem 'wiselinks'
-
-# gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
