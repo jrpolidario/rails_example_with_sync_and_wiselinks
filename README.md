@@ -31,4 +31,4 @@ This is only an example application that hopefully would be useful to developers
 
   > Note the `-E production`, Faye server with Thin doesn't seem to work on development
 
-* Finally, open [http://localhost:3000/posts](http://localhost:3000/posts) to view the page
+* Finally, open [http://localhost:3000/](http://localhost:3000/) to view the page

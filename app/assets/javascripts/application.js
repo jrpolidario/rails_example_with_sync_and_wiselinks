@@ -19,9 +19,14 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-$(function(){window.wiselinks = new Wiselinks();});
+$(function(){
+	window.wiselinks = new Wiselinks();
 
-$(window).load(function() {
-  // Animate loader off screen
-  $(".se-pre-con").fadeOut('slow');
+	$(document).off('page:loading').on('page:loading', function(event, $target, render, url) {
+		console.log('WiseLinks: Page: Loading');
+    });
+
+    $(document).off('page:done').on('page:done', function(event, $target, status, url, data) {
+        console.log('WiseLinks: Page: Done');
+    });
 });
