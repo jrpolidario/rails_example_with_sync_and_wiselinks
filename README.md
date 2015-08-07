@@ -1,9 +1,10 @@
-# Rails Single-Page Example Application With Live Page Content
+# Rails Single-Page Application Example With Live Page Content
 
 ## Summary
 
-This is a Rails 4.2 template applictaion integrated with the Sync gem for live page content,
-and Wiselinks gems for partial view loading for AJAX page navigation.
+This is a Rails 4.2 template application integrated with the Sync gem for live page content,
+and Wiselinks gems for partial view loading for AJAX page navigation, and also uses Rails Unobtrusive
+Javascript data-remote for links that have specific JS calls.
 
 This is only an example application that hopefully would be useful to developers.
 
